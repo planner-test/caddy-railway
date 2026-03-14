@@ -1,6 +1,9 @@
 :{$PORT} {
     route {
         respond /healthz 200
-        reverse_proxy {$UPSTREAM}
+        reverse_proxy {$UPSTREAM} {
+            header_up X-Forwarded-Proto https
+            header_up X-Forwarded-Host {host}
+        }
     }
 }
