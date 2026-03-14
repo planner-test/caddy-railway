@@ -1,3 +1,6 @@
 :{$PORT} {
-    reverse_proxy {$UPSTREAM}
+    route {
+        respond /healthz 200
+        reverse_proxy {$UPSTREAM}
+    }
 }
